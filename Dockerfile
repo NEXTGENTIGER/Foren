@@ -47,7 +47,6 @@ WORKDIR /app
 # Copie des fichiers nécessaires
 COPY requirements.txt .
 COPY forensic_analyzer.py .
-COPY run_analysis.py .
 
 # Installation des dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
@@ -63,4 +62,4 @@ ENV PYTHONUNBUFFERED=1
 ENV TZ=UTC
 
 # Point d'entrée
-ENTRYPOINT ["python", "run_analysis.py"] 
+ENTRYPOINT ["python", "forensic_analyzer.py"] 
