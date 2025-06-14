@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     exiftool \
     sleuthkit \
     libmagic1 \
+    python3-dev \
+    libyara-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Création du répertoire de travail
@@ -19,7 +21,9 @@ COPY requirements.txt .
 COPY forensic_analyzer.py .
 
 # Installation des dépendances Python
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir requests python-magic && \
+    pip install --no-cache-dir yara-python
 
 # Création des répertoires nécessaires
 RUN mkdir -p /app/logs /app/output /app/input
