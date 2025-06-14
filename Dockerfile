@@ -9,38 +9,7 @@ RUN apt-get update && apt-get install -y \
     exiftool \
     sleuthkit \
     libmagic1 \
-    wget \
-    gnupg2 \
     && rm -rf /var/lib/apt/lists/*
-
-# Installation des dépendances pour bulk-extractor
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    autoconf \
-    automake \
-    libtool \
-    libssl-dev \
-    libewf-dev \
-    libtre-dev \
-    libafflib-dev \
-    libexpat1-dev \
-    libxml2-dev \
-    libbz2-dev \
-    libzip-dev \
-    libsqlite3-dev \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
-# Installation de bulk-extractor depuis le code source
-RUN git clone https://github.com/simsong/bulk_extractor.git \
-    && cd bulk_extractor \
-    && git checkout v2.0.3 \
-    && autoreconf -i \
-    && ./configure \
-    && make \
-    && make install \
-    && cd .. \
-    && rm -rf bulk_extractor
 
 # Création du répertoire de travail
 WORKDIR /app
