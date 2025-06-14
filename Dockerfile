@@ -28,18 +28,19 @@ RUN apt-get update && apt-get install -y \
     libbz2-dev \
     libzip-dev \
     libsqlite3-dev \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Installation de bulk-extractor depuis le code source
-RUN wget https://github.com/simsong/bulk_extractor/archive/refs/tags/v2.0.3.tar.gz \
-    && tar xzf v2.0.3.tar.gz \
-    && cd bulk_extractor-2.0.3 \
+RUN git clone https://github.com/simsong/bulk_extractor.git \
+    && cd bulk_extractor \
+    && git checkout v2.0.3 \
     && autoreconf -i \
     && ./configure \
     && make \
     && make install \
     && cd .. \
-    && rm -rf bulk_extractor-2.0.3 v2.0.3.tar.gz
+    && rm -rf bulk_extractor
 
 # Création du répertoire de travail
 WORKDIR /app
@@ -62,4 +63,4 @@ ENV PYTHONUNBUFFERED=1
 ENV TZ=UTC
 
 # Point d'entrée
-ENTRYPOINT ["python", "forensic_analyzer.py"] 
+ENTRYPOINT ["python", "forensic_analyzer.py"]
