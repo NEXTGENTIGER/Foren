@@ -1,0 +1,7 @@
+requests>=2.31.0
+python-magic>=0.4.27; platform_system!="Windows"
+python-magic-bin>=0.4.14; platform_system=="Windows"
+pyyara>=4.3.1
+python-clamav>=0.4.1
+exiftool>=0.5.5
+pathlib>=1.0.1 
