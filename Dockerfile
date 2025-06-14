@@ -35,5 +35,5 @@ RUN freshclam
 ENV PYTHONUNBUFFERED=1
 ENV TZ=UTC
 
-# Point d'entrée
-ENTRYPOINT ["python", "forensic_analyzer.py"]
+# Commande par défaut (au lieu de ENTRYPOINT)
+CMD ["python", "forensic_analyzer.py"]
